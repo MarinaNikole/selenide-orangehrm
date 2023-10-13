@@ -39,7 +39,6 @@ public class SideBarTest extends BaseTest {
 //        sideBarList.add("Claim");
 //        sideBarList.add("Buzz");
 
-
         loginPage.enterUserName(usernameValue);
         loginPage.enterPassword(passwordValue);
         loginPage.clickLoginButton();
@@ -68,7 +67,12 @@ public class SideBarTest extends BaseTest {
         headerSection.getUserDropdownTab().shouldBe(visible);
         sideBar.searchLinkIsVisible();
 
-        sideBar.sideBarCheck();
+     //   sideBar.sideBarCheck();  // один из вариантов проверки
+        sideBar.checkExpandedSideBarPicture();
+        sideBar.allIconsAreDisplayed();
+        sideBar.clickSideBarArrow();
+        sideBar.checkCollapsedSideBarPicture();
+        sideBar.allIconsAreDisplayed();
     }
 
 
@@ -135,7 +139,8 @@ public class SideBarTest extends BaseTest {
         sideBar.searchLinkIsVisible();
 
         sideBar.searchExactLink("summer");
-        sideBar.searchIsEmpty();
+        sideBar.searchResultIsEmpty();
+        sideBar.afterSearchShouldHaveNumberLink(0);
     }
 
     @Test
@@ -166,7 +171,7 @@ public class SideBarTest extends BaseTest {
     }
 
     @Test
-    public void searchNotCompleteInput_d(){
+    public void searchByPartText_d(){
         List<String> sideBarList = new ArrayList<>();
         sideBarList.add("Admin");
         sideBarList.add("Dashboard");
@@ -185,10 +190,12 @@ public class SideBarTest extends BaseTest {
     }
 
     @Test
-    public void searchNotCompleteInput_re(){
+    public void searchByPartText_re(){
         List<String> sideBarList = new ArrayList<>();
         sideBarList.add("Recruitment");
         sideBarList.add("Directory");
+
+        String query = "re";
 
         loginPage.enterUserName(usernameValue);
         loginPage.enterPassword(passwordValue);
@@ -196,8 +203,9 @@ public class SideBarTest extends BaseTest {
         headerSection.getUserDropdownTab().shouldBe(visible);
         sideBar.searchLinkIsVisible();
 
-        sideBar.searchExactLink("re");
-        sideBar.sideBarLinksAreVisible(sideBarList);
+        sideBar.searchExactLink(query);
+        sideBar.sideBarLinksAreVisible(sideBarList); // проверяет коллекцию ссылок после поиска
+        sideBar.checkAllLinksHasText(query); // проверяет, содержится ли в ссылках комбинация "re" (дополнительная проверка)
         sideBar.afterSearchShouldHaveNumberLink(2);
     }
 
