@@ -1,4 +1,6 @@
+import io.qameta.allure.Feature;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,7 @@ public class SideBarTest extends BaseTest {
     String buzz = "Buzz";
 
 
-    @Test
+    @Test @Feature("Side Bar") @Category(Smoke.class)
     public void allLinksAreDisplayed(){
 //        List<String> sideBarList = new ArrayList<>();
 //        sideBarList.add("Admin");

@@ -1,4 +1,5 @@
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -17,7 +18,7 @@ public class LoginTest extends BaseTest {
         $(className("orangehrm-forgot-password-title")).shouldBe(visible).shouldHave(text("Reset Password"));
     }
 
-    @Test
+    @Test @Category(Smoke.class)
     public void successLogin() {
         loginPage.enterUserName(usernameValue);
         loginPage.enterPassword(passwordValue);
