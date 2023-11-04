@@ -14,4 +14,5 @@ public class LinkedLinkDialog {
         linkedInElement.shouldBe(visible, Duration.ofSeconds(5)).shouldHave(text("LinkedIn"));
     }
 
+
 }
